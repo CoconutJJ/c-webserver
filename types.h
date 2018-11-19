@@ -1,4 +1,5 @@
-
+#ifndef TYPES_H
+#define TYPES_H
 /**
  * HTTP Method Enumerations
  */
@@ -59,7 +60,6 @@ typedef struct _http_url {
 
 } HTTP_URL;
 
-
 /**
  * HTTP REQUEST
  * Client Request Structure
@@ -67,7 +67,7 @@ typedef struct _http_url {
 typedef struct _http_request {
 
     HTTP method;
-    
+
     URL url;
 
     HTTP_HEADER* headers;
@@ -83,12 +83,22 @@ typedef struct _http_request {
  * Structure representing a single route
  */
 typedef struct _route_def {
+
     HTTP_REQUEST_METHOD method;
+
     ROUTE handler;
+
     URL url;
+
 } ROUTE_DEF;
 
 typedef struct _http_header {
-    char * title;
-    char * value;
+    char* title;
+    char* value;
+
+    HTTP_HEADER* _next;
+    HTTP_HEADER* _prev;
+
 } HTTP_HEADER;
+
+#endif

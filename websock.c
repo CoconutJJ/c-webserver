@@ -8,6 +8,8 @@
 #include <time.h>
 #include <unistd.h>
 #include "types.h"
+#include "request.h"
+#include "headers.h" 
 
 void __init_serv(int PORT, char* (*onRecv)(char* response, int* sz))
 {
@@ -71,11 +73,11 @@ void __init_serv(int PORT, char* (*onRecv)(char* response, int* sz))
     }
 }
 
-char* __onRequest(char* response, int* sz)
+char* __onRequest(char* request, int* sz)
 {
+    HTTP_REQUEST * new_req = createHTTPRequest();
+    parseRequestHeaders(new_req, request);
     
-
-    free(response);
 }
 
 void httpCreateServer(int PORT)
@@ -84,3 +86,6 @@ void httpCreateServer(int PORT)
 }
 
 
+int main(int argc, char ** argv) {
+    
+}
