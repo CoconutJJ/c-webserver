@@ -94,7 +94,12 @@ void parseRequestHeaders(HTTP_REQUEST* reqst, const char* request)
     char* http = toks[2];
 
     reqst->method = parseMethod(method);
-    reqst->url = url;
+
+    hexdecode(url);
+
+    reqst->url = malloc(strlen(url));
+    strcpy(reqst->url, url);
+
     tok = strtok(NULL, HTTP_NEWLINE);
 
     while (tok != NULL) {
@@ -109,7 +114,7 @@ void parseRequestHeaders(HTTP_REQUEST* reqst, const char* request)
     }
 
     reqst->headers = header_list;
-
+    
     __clearHeader();
 }
 

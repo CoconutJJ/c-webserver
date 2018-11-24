@@ -101,4 +101,15 @@ typedef struct _http_header {
 
 } HTTP_HEADER;
 
+typedef struct _http_response {
+
+    HTTP _method;
+    HTTP_HEADER * _headers;
+    
+
+    
+    
+
+} HTTP_RESPONSE;
+
 #endif

@@ -1,8 +1,9 @@
 #include "types.h"
 #include <stdio.h>
 #include <stdlib.h>
-
-
+#include <string.h>
+#include "headers.h"
+#include "request.h"
 ROUTE_LIST _routes;
 
 int route_sz = 0;
@@ -23,8 +24,16 @@ void createRoute(HTTP_REQUEST_METHOD method, URL url, ROUTE handler)
 }
 
 
-void _serveRoute(URL url) {
+void _serveRoute(HTTP_REQUEST * req) {
+
+    
     for (int i = 0; i < route_sz; i++) {
-        
+        if (strcmp(_routes[i].url, req->url) == 0 && _routes[i].method == req->method) {
+            _routes[i].handler(req);
+        }
     }
+}
+
+void serveRoute(HTTP_REQUEST * req) {
+    _serveRoute(req);
 }

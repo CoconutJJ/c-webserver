@@ -10,7 +10,7 @@
 #include "types.h"
 #include "request.h"
 #include "headers.h" 
-
+#include "routes.h"
 void __init_serv(int PORT, char* (*onRecv)(char* response, int* sz))
 {
 
@@ -32,7 +32,9 @@ void __init_serv(int PORT, char* (*onRecv)(char* response, int* sz))
     listen(sfd, 10);
 
     int cfd;
+    
     char* buf;
+
     while (1) {
         // accept a connection
         cfd = accept(sfd, NULL, NULL);
@@ -77,6 +79,7 @@ char* __onRequest(char* request, int* sz)
 {
     HTTP_REQUEST * new_req = createHTTPRequest();
     parseRequestHeaders(new_req, request);
+    serveRoute(new_req);
     
 }
 

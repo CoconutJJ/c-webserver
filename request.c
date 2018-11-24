@@ -1,17 +1,18 @@
-#include "types.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "types.h"
 
 HTTP_REQUEST* createHTTPRequest()
 {
     HTTP_REQUEST* req = malloc(sizeof(HTTP_REQUEST));
 
-    // req->method = method;
-
-    // req->url = malloc(strlen(url) + 1);
-
-    // strcpy(req->url, url);
+    req->method = -1;
+    req->url = NULL;
+    req->headers = NULL;
+    req->body = NULL;
+    req->params = NULL;
+    req->query = NULL;
 
     return req;
 }
