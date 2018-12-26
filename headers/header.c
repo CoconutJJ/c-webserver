@@ -4,6 +4,9 @@
 #include "../types/types.h"
 
 
+/**
+ * Create a HTTP header.
+ */
 HTTP_HEADER * createHeader(const char * key, const char * value) {
 
     HTTP_HEADER * new = malloc(sizeof(HTTP_HEADER));
@@ -17,9 +20,14 @@ HTTP_HEADER * createHeader(const char * key, const char * value) {
     return new;
 }
 
-void addHeader(HTTP_HEADER * head, HTTP_HEADER * new) {
+void addHeader(HTTP_HEADER * head, HTTP_HEADER * newp) {
     
     while(head->_next != NULL) head = head->_next;
-    head->_next = new;
-    new->_prev = head;
+    head->_next = newp;
+    newp->_prev = head;
 }
+
+
+
+
+

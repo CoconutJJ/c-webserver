@@ -9,5 +9,20 @@ void setRequestHeader(HTTP_REQUEST * req,const char * key, const char * value) {
     
     //addHeader(rep->headers, new);
 
+    
 
 }   
+
+
+void setResponseHeader(HTTP_RESPONSE * resp, const char * key, const char * value) {
+
+    
+}
+
+
+void parseRequest(char * request) {
+
+    
+
+
+}

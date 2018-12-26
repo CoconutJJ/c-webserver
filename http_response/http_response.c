@@ -19,5 +19,5 @@ void setResponseHeader(HTTP_RESPONSE * rep, const char * key, const char * value
     HTTP_HEADER * new = createHeader(key, value);
     
     addHeader(rep->headers, new);
-
+    
 }

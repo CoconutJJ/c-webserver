@@ -14,6 +14,7 @@ void __init_serv(int PORT, char* (*onRecv)(char* response, int* sz))
     // create a socket
     int sfd = socket(AF_INET, SOCK_STREAM, 0);
 
+
     struct sockaddr_in serv_addr;
 
     serv_addr.sin_family = AF_INET;
@@ -29,7 +30,7 @@ void __init_serv(int PORT, char* (*onRecv)(char* response, int* sz))
     listen(sfd, 10);
 
     int cfd;
-    
+
     char* buf;
 
     while (1) {
@@ -47,7 +48,7 @@ void __init_serv(int PORT, char* (*onRecv)(char* response, int* sz))
 
         // create a buffer of size curr_buf_sz
         buf = malloc(curr_buf_sz * sizeof(char));
-        
+
         char * next = &buf[0];
         // read until the number of bytes left is less than the given read amount
         while ((bytesread = read(cfd, next, increment - 1)) == increment - 1) {
@@ -57,11 +58,11 @@ void __init_serv(int PORT, char* (*onRecv)(char* response, int* sz))
         }
         // remove the extra space at the end
         buf = realloc(buf, curr_buf_sz = curr_buf_sz - increment + bytesread + 1);
-        
+
         buf[curr_buf_sz - 1] = '\0';
 
         int response_sz;
-        
+
         char* response = (*onRecv)(buf, &response_sz);
 
         write(cfd, response, response_sz);
@@ -74,7 +75,7 @@ void __init_serv(int PORT, char* (*onRecv)(char* response, int* sz))
 
 char* __onRequest(char* request, int* sz)
 {
-    
+
 }
 
 void httpCreateServer(int PORT)
@@ -84,5 +85,5 @@ void httpCreateServer(int PORT)
 
 
 int main(int argc, char ** argv) {
-    
+
 }

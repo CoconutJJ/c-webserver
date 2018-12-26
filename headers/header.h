@@ -3,6 +3,6 @@
 #include "../types/types.h"
 
 HTTP_HEADER *createHeader(const char *key, const char *value);
-void addHeader(HTTP_HEADER *head, HTTP_HEADER *new);
+void addHeader(HTTP_HEADER *head, HTTP_HEADER *newp);
 
 #endif
